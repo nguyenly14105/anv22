@@ -4,23 +4,24 @@
  */
 package model;
 
-import constants.SalaryStatus;
+import java.util.ArrayList;
 
 /**
  *
  * @author nguye
  */
 public class Worker {
+
     private String id;
     private String name;
     private int age;
     private double salary;
     private String workLocation;
-    private SalaryStatus status = SalaryStatus.NO_CHANGE;
+    private ArrayList<SalaryHistory> salaryHistorys = new ArrayList<>();
 
     public Worker() {
     }
-    
+
     public Worker(String id, String name, int age, double salary, String workLocation) {
         this.id = id;
         this.name = name;
@@ -29,12 +30,13 @@ public class Worker {
         this.workLocation = workLocation;
     }
 
-    public SalaryStatus getStatus() {
-        return status;
+    public void addSalaryHistory(SalaryHistory history) {
+        history.setWorker(this);
+        salaryHistorys.add(history);
     }
 
-    public void setStatus(SalaryStatus status) {
-        this.status = status;
+    public ArrayList<SalaryHistory> getSalaryHistorys() {
+        return salaryHistorys;
     }
 
     public String getId() {
@@ -76,8 +78,9 @@ public class Worker {
     public void setWorkLocation(String workLocation) {
         this.workLocation = workLocation;
     }
-    
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return String.format("%-6s %-8s %-5d %-8.2f %-8s", id, name, age, salary, workLocation);
+    }
 }

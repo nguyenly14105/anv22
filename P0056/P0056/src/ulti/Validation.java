@@ -5,6 +5,7 @@
 package ulti;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -60,6 +61,17 @@ public class Validation {
         }
     }
 
+    //check worker code theo format 1 chu cai + 2 so
+    public static void checkCode(String code){
+       String reString = "^[A-Za-z]\\d{2}$";
+        if (code.matches(reString)) {
+            System.out.println("Input is correct format!");
+        } else {
+            System.out.println("Input is not correct format!");
+            System.out.println("Format: W00, W01, ...");
+        }
+        
+    }
     //check string
     public static String checkString(String input) {
 

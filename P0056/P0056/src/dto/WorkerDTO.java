@@ -17,7 +17,6 @@ public class WorkerDTO {
     private int age;
     private double salary;
     private String workLocation;
-    private SalaryStatus status;
 
     public WorkerDTO() {
     }
@@ -29,15 +28,6 @@ public class WorkerDTO {
         this.salary = salary;
         this.workLocation = workLocation;
     }
-
-    public SalaryStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(SalaryStatus status) {
-        this.status = status;
-    }
-    
 
     public String getId() {
         return id;

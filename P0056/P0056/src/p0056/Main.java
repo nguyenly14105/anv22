@@ -44,21 +44,24 @@ public class Main {
                     inputForm.setSalary(salary);
                     String workLocation = ulti.Validation.checkString("work location");
                     inputForm.setWorkLocation(workLocation);
-
+                    controller.setInputData(inputForm);
+                    controller.addWorker();
+                    System.out.println("Add worker successfully!");
                     break;
                 case 2:
                     System.out.println("------- Up Salary ------");
                     String codeUp;
                     while (true) {
                         codeUp = ulti.Validation.checkString("Code");
-                        if (!controller.checkID(codeUp)) {
-                            System.out.println("Code is not exist!");
-                        } else {
+                        if (controller.checkID(codeUp)) {
                             break;
+                        } else{
+                            System.out.println("Code is not exist!");
                         }
                     }
                     double amountUp = ulti.Validation.checkDouble("amount");
                     controller.upSalary(codeUp, amountUp);
+                    System.out.println("Up salary successfully!");
                     break;
                 case 3:
                     System.out.println("------- Down Salary ------");
@@ -73,8 +76,10 @@ public class Main {
                     }
                     double amountDown = ulti.Validation.checkDouble("amount");
                     controller.downSalary(codeDown, amountDown);
+                    System.out.println("Down salary successfully!");
                     break;
                 case 4:
+                    controller.displayWorker();
                     break;
                 case 5:
                     break;
