@@ -15,11 +15,8 @@ import model.Worker;
  */
 public class WorkerView {
 
-    private ArrayList<Worker> dataList = new ArrayList<>();
-
-    public void setData(ArrayList inputData) {
-        this.dataList = inputData;
-    }
+    private String data ;
+    
 
     public void mainMenu() {
         System.out.println("======== Worker Management ========");
@@ -29,19 +26,25 @@ public class WorkerView {
         System.out.println("4. Display Information salary");
         System.out.println("5. Exit");
     }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
     
     public void displayWorker(){
-        System.out.println("----------Worker Information--------------");
-        System.out.printf("%-6s %-8s %-5s %-8s %-8s\n","Code","Name","Age","Salary","Work Location");
-        for (Worker worker : dataList) {
-            System.out.println(worker.toString());
-        }
+       
+    }
+    public void displayHeader(){
+        System.out.println("--------------------Display Information Salary-----------------------");
+        System.out.printf("%-6s %-10s %-5s %-10s %-10s %-12s\n", "Code", "Name", "Age", "Salary", "Status", "Date");
+     
     }
     public void salaryHistoryView() {
-        System.out.println("--------------------Display Information Salary-----------------------");
-        System.out.printf("%-6s %-10s %-5s %-10s %-8s %-12s\n", "Code", "Name", "Age", "Salary", "Status", "Date");
-      
-
+        System.out.println(data);   
     }
 
 }

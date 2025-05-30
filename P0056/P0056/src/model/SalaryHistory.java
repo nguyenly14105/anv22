@@ -14,8 +14,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class SalaryHistory {
 
-    private Worker worker;
-    private double salary;
+    private double salaryChange;
     private SalaryStatus status;
     private LocalDate date;
 
@@ -23,7 +22,7 @@ public class SalaryHistory {
     }
 
     public SalaryHistory(double salary, SalaryStatus status, LocalDate date) {
-        this.salary = salary;
+        this.salaryChange = salary;
         this.status = status;
         this.date = date;
     }
@@ -31,16 +30,8 @@ public class SalaryHistory {
     @Override
     public String toString() {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return String.format("%-6s %-8s %-5d %-8.2f %-8s %-12s",
-                worker.getId(), worker.getName(), worker.getAge(), salary, status, date.format(fmt));
-    }
-
-    public Worker getWorker() {
-        return worker;
-    }
-
-    public void setWorker(Worker worker) {
-        this.worker = worker;
+        return String.format(" %-10.2f %-10s %-12s",
+                salaryChange, status, date.format(fmt));
     }
 
     public SalaryStatus getStatus() {
@@ -60,11 +51,11 @@ public class SalaryHistory {
     }
 
     public double getSalary() {
-        return salary;
+        return salaryChange;
     }
 
     public void setSalary(double salary) {
-        this.salary = salary;
+        this.salaryChange = salary;
     }
 
 }

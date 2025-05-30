@@ -6,6 +6,7 @@ package p0056;
 
 import controller.WorkerController;
 import dto.WorkerDTO;
+import ulti.Validation;
 
 /**
  *
@@ -22,13 +23,13 @@ public class Main {
         WorkerDTO inputForm = new WorkerDTO();
         while (true) {
             controller.displayMenu();
-            int choose = ulti.Validation.checkInt("your choose", 1, 5);
+            int choose = Validation.checkInt("your choose", 1, 5);
             switch (choose) {
                 case 1:
                     System.out.println("---------- Add Worker ----------");
                     String code;
                     while (true) {
-                        code = ulti.Validation.checkString("Code");
+                        code = Validation.checkString("Code");
                         if (controller.checkID(code)) {
                             System.out.println("Code is exist!");
                         } else {
@@ -36,13 +37,13 @@ public class Main {
                         }
                     }
                     inputForm.setId(code);
-                    String name = ulti.Validation.checkString("Name");
+                    String name = Validation.checkString("Name");
                     inputForm.setName(name);
-                    int age = ulti.Validation.checkInt("Age", 18, 50);
+                    int age = Validation.checkInt("Age", 18, 50);
                     inputForm.setAge(age);
-                    double salary = ulti.Validation.checkDouble("Salary");
+                    double salary = Validation.checkDouble("Salary");
                     inputForm.setSalary(salary);
-                    String workLocation = ulti.Validation.checkString("work location");
+                    String workLocation = Validation.checkString("work location");
                     inputForm.setWorkLocation(workLocation);
                     controller.setInputData(inputForm);
                     controller.addWorker();
@@ -52,14 +53,14 @@ public class Main {
                     System.out.println("------- Up Salary ------");
                     String codeUp;
                     while (true) {
-                        codeUp = ulti.Validation.checkString("Code");
+                        codeUp = Validation.checkString("Code");
                         if (controller.checkID(codeUp)) {
                             break;
-                        } else{
+                        } else {
                             System.out.println("Code is not exist!");
                         }
                     }
-                    double amountUp = ulti.Validation.checkDouble("amount");
+                    double amountUp = Validation.checkDouble("amount");
                     controller.upSalary(codeUp, amountUp);
                     System.out.println("Up salary successfully!");
                     break;
@@ -67,23 +68,26 @@ public class Main {
                     System.out.println("------- Down Salary ------");
                     String codeDown;
                     while (true) {
-                        codeDown = ulti.Validation.checkString("Code");
+                        codeDown = Validation.checkString("Code");
                         if (!controller.checkID(codeDown)) {
                             System.out.println("Code is not exist!");
                         } else {
                             break;
                         }
                     }
-                    double amountDown = ulti.Validation.checkDouble("amount");
+                    double amountDown = Validation.checkDouble("amount");
                     controller.downSalary(codeDown, amountDown);
                     System.out.println("Down salary successfully!");
                     break;
                 case 4:
-                    controller.displayWorker();
+                    controller.displaySalaryHistory();
                     break;
                 case 5:
                     break;
 
+            }
+            if (choose == 5) {
+                break;
             }
         }
 

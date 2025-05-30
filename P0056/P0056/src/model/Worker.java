@@ -4,6 +4,8 @@
  */
 package model;
 
+import constants.SalaryStatus;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -28,10 +30,10 @@ public class Worker {
         this.age = age;
         this.salary = salary;
         this.workLocation = workLocation;
+        salaryHistorys.add(new SalaryHistory(salary, SalaryStatus.NO_CHANGE, LocalDate.now()));
     }
 
     public void addSalaryHistory(SalaryHistory history) {
-        history.setWorker(this);
         salaryHistorys.add(history);
     }
 
@@ -81,6 +83,6 @@ public class Worker {
 
     @Override
     public String toString() {
-        return String.format("%-6s %-8s %-5d %-8.2f %-8s", id, name, age, salary, workLocation);
+        return String.format("%-6s %-10s %-5d", id, name, age);
     }
 }

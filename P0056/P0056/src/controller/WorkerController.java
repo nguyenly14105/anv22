@@ -4,12 +4,11 @@
  */
 package controller;
 
-import constants.SalaryStatus;
 import dto.WorkerDTO;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import model.SalaryHistory;
 import model.Worker;
+import service.WorkerService;
 import view.WorkerView;
 
 /**
@@ -21,6 +20,7 @@ public class WorkerController {
     private WorkerDTO inputData = new WorkerDTO();
     private ArrayList<Worker> workerList = new ArrayList<>();
     private WorkerView view = new WorkerView();
+    private WorkerService service = new WorkerService();
 
     //set input data
     public void setInputData(WorkerDTO inputForm) {
@@ -33,33 +33,6 @@ public class WorkerController {
 
     }
 
-    //up salary
-    public void upSalary(String code, double amount) {
-
-        for (Worker worker : workerList) {
-            if (this.checkID(code)) {
-                SalaryHistory history = new SalaryHistory(worker.getSalary(), SalaryStatus.UP, LocalDate.now());
-                worker.setSalary(worker.getSalary() + amount);
-                worker.addSalaryHistory(history);
-
-                break;
-            }
-        }
-    }
-    //down salary
-
-    public void downSalary(String code, double amount) {
-
-        for (Worker worker : workerList) {
-            if (this.checkID(code)) {
-                SalaryHistory history = new SalaryHistory(worker.getSalary(), SalaryStatus.DOWN, LocalDate.now());
-                worker.setSalary(worker.getSalary() - amount);
-                worker.addSalaryHistory(history);
-                break;
-            }
-        }
-    }
-
     //check work ID
     public boolean checkID(String code) {
         for (Worker worker : workerList) {
@@ -70,16 +43,30 @@ public class WorkerController {
         return false;
     }
 
+    //tang luong
+    public void upSalary(String code, double amount) {
+        service.setData(workerList);
+        service.upSalary(code, amount);
+    }
+
+    //giam luong
+    public void downSalary(String code, double amount) {
+        service.setData(workerList);
+        service.downSalary(code, amount);
+    }
+
     public void displayWorker() {
-        view.setData(workerList);
         view.displayWorker();
     }
 
     //hien thi salary history
     public void displaySalaryHistory() {
+        view.displayHeader();
         for (Worker worker : workerList) {
-            view.setData(worker.getSalaryHistorys());
-            view.salaryHistoryView();
+            for (SalaryHistory record : worker.getSalaryHistorys()) {
+                view.setData(worker.toString() + record.toString());
+                view.salaryHistoryView();
+            }
         }
     }
 
