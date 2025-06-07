@@ -30,8 +30,8 @@ public class WorkerService {
     public void upSalary(String code, double amount) {
         for (Worker worker : data) {
             if (worker.getId().equalsIgnoreCase(code)) {
-                SalaryHistory history = new SalaryHistory(worker.getSalary(), SalaryStatus.UP, LocalDate.now());
                 worker.setSalary(worker.getSalary() + amount);
+                SalaryHistory history = new SalaryHistory(worker.getSalary(), SalaryStatus.UP, LocalDate.now());
                 worker.addSalaryHistory(history);
 
                 break;
@@ -44,8 +44,8 @@ public class WorkerService {
 
         for (Worker worker : data) {
             if (worker.getId().equalsIgnoreCase(code)) {
-                SalaryHistory history = new SalaryHistory(worker.getSalary(), SalaryStatus.DOWN, LocalDate.now());
                 worker.setSalary(worker.getSalary() - amount);
+                SalaryHistory history = new SalaryHistory(worker.getSalary(), SalaryStatus.DOWN, LocalDate.now());
                 worker.addSalaryHistory(history);
                 break;
             }
