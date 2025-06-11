@@ -29,7 +29,7 @@ public class Main {
             choose = Validation.checkInt("your choose", 1, 5);
             switch (choose) {
                 case 1: {
-                    int count = 3;
+                    int count = 5;
                     while (count > 0) {
                         while (true) {
                             code = Validation.checkString("code");
@@ -71,6 +71,13 @@ public class Main {
                         controller.setData(inputForm);
                         controller.addStudent();
                         count--;
+                        if (count == 0) {
+                            if (Validation.checkYN()) {
+                                count = 1;
+                            } else {
+                                break;
+                            }
+                        }
                     }
                 }
                 break;
@@ -96,7 +103,7 @@ public class Main {
                                 case 2:
                                     inputForm.setStudentSemester(Semester.SUMMER);
                                     break;
-                                default:
+                                case 3:
                                     inputForm.setStudentSemester(Semester.FALL);
                                     break;
                             }
@@ -109,7 +116,7 @@ public class Main {
                                 case 2:
                                     inputForm.setStudentCourse(Course.DOT_NET);
                                     break;
-                                default:
+                                case 3:
                                     inputForm.setStudentCourse(Course.C_CPP);
                                     break;
                             }
@@ -118,9 +125,10 @@ public class Main {
                             controller.deleteByID(code);
                         }
                     }
-
+                    break;
                 case 4:
-
+                    controller.displayReport();
+                    break;
             }
             if (choose == 5) {
                 break;

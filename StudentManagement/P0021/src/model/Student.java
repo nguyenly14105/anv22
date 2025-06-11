@@ -6,6 +6,8 @@ package model;
 
 import constants.Course;
 import constants.Semester;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,7 +18,7 @@ public class Student {
     private String studentID;
     private String studentName;
     private Semester studentSemester;
-    private Course studentCourse;
+    private List<Course> studentCourse;
 
     public Student() {
     }
@@ -25,7 +27,16 @@ public class Student {
         this.studentID = studentID;
         this.studentName = studentName;
         this.studentSemester = studentSemester;
-        this.studentCourse = studentCourse;
+        this.studentCourse = new ArrayList<>();
+        this.studentCourse.add(studentCourse);
+    }
+
+    public List<Course> getStudentCourse() {
+        return studentCourse;
+    }
+
+    public void addStudentCourse(Course course) {
+        studentCourse.add(course);
     }
 
     public String getStudentID() {
@@ -52,18 +63,9 @@ public class Student {
         this.studentSemester = studentSemester;
     }
 
-    public Course getStudentCourse() {
-        return studentCourse;
-    }
-
-    public void setStudentCourse(Course studentCourse) {
-        this.studentCourse = studentCourse;
-    }
-
     @Override
     public String toString() {
-   return String.format("%-6s %-20s %-10s %-10s", studentID,studentName,studentSemester,studentCourse.toString());
+        return String.format("%-6s %-20s %-10s ", studentID, studentName, studentSemester);
     }
-    
-    
+
 }

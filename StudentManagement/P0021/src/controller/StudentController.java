@@ -29,6 +29,7 @@ public class StudentController {
     //add student
     public void addStudent() {
         studentList.add(new Student(inputData.getStudentID(), inputData.getStudentName(), inputData.getStudentSemester(), inputData.getStudentCourse()));
+
     }
 
     //check code
@@ -82,7 +83,7 @@ public class StudentController {
     public void updateStudent(String code, String name, Semester semester, Course course) {
         findByID(code).setStudentName(name);
         findByID(code).setStudentSemester(semester);
-        findByID(code).setStudentCourse(course);
+        findByID(code).addStudentCourse(course);
         view.displayMessage("UPDATE SUCCESSFULL !!!");
     }
 
@@ -109,12 +110,22 @@ public class StudentController {
         }
     }
 
+    //display report
+    public void displayReport() {
+        view.displayReport();
+        for(Student student : studentList){
+            view.setData(student.toString()+student.getStudentCourse().size());
+            view.diplayData();
+        }
+    }
+
     //display student
-    public void displayStudent(String code){
+    public void displayStudent(String code) {
         view.displayStudentInformation();
         view.setData(findByID(code).toString());
         view.diplayData();
     }
+
     //diplay menu
     public void displayMenu() {
         view.diplayMenu();

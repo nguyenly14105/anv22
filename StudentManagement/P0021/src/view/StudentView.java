@@ -22,7 +22,7 @@ public class StudentView {
 
     public void displayStudentInformation() {
         System.out.println("======= Student Information ======");
-        System.out.printf("%-6s %-20s %-10s %-10s\n", "Code", "Name", "Semester", "Course");
+        System.out.printf("%-6s %-20s %-10s\n", "Code", "Name", "Semester");
     }
 
     public void diplayData() {
@@ -37,6 +37,11 @@ public class StudentView {
         System.out.println("4.Report");
         System.out.println("5.Exit");
 
+    }
+
+    public void displayReport() {
+        System.out.println("STUDENT REPORT");
+        System.out.printf("%-6s %-20s %-10s %-6s\n", "Code", "Name", "Semsester", "Total Course");
     }
 
     public void displaySemester() {
