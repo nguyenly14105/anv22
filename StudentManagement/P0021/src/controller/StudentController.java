@@ -9,6 +9,7 @@ import constants.Semester;
 import dto.StudentDTO;
 import java.util.ArrayList;
 import model.Student;
+import service.StudentService;
 import view.StudentView;
 
 /**
@@ -20,6 +21,7 @@ public class StudentController {
     private ArrayList<Student> studentList = new ArrayList<>();
     private StudentDTO inputData = new StudentDTO();
     private StudentView view = new StudentView();
+    private StudentService service = new StudentService();
 
     //set data
     public void setData(StudentDTO inputForm) {
@@ -32,14 +34,9 @@ public class StudentController {
 
     }
 
-    //check code
-    public boolean checkID(String code) {
-        for (Student student : studentList) {
-            if (student.getStudentID().equalsIgnoreCase(code)) {
-                return true;
-            }
-        }
-        return false;
+    //add course
+    public void addCourse(String code, Course course) {
+        findByID(code).addStudentCourse(course);
     }
 
     //check name
@@ -54,19 +51,14 @@ public class StudentController {
 
     //tim kiem theo ten
     public void findByName(String name) {
-        if (!checkName(name)) {
-            view.displayMessage("Not found !!!");
-        } else {
-            view.displayStudentInformation();
-            for (Student student : studentList) {
-                if (student.getStudentName().contains(name)) {
-                    view.setData(student.toString());
-                    view.diplayData();
-                }
+        StringBuilder result = new StringBuilder();
+        for (Student student : studentList) {
+            if (student.getStudentName().contains(name)) {
+                result.append(student.toString()).append("\n");
             }
-
         }
-
+        view.setData(result.toString());
+        view.diplayData();
     }
 
     //tim kiem theo code
@@ -80,11 +72,9 @@ public class StudentController {
     }
 
     //update thong tin sinh vien
-    public void updateStudent(String code, String name, Semester semester, Course course) {
+    public void updateStudent(String code, String name,Semester semester) {
         findByID(code).setStudentName(name);
         findByID(code).setStudentSemester(semester);
-        findByID(code).addStudentCourse(course);
-        view.displayMessage("UPDATE SUCCESSFULL !!!");
     }
 
     //sort by name
@@ -102,40 +92,15 @@ public class StudentController {
 
     //delete by code
     public void deleteByID(String id) {
-        for (Student student : studentList) {
-            if (student.getStudentID().equals(id)) {
-                studentList.remove(student);
-                view.displayMessage("DELETE SUCCESSFULL !!!");
-            }
-        }
+        studentList.remove(findByID(id));
     }
 
     //display report
     public void displayReport() {
-        view.displayReport();
-        for(Student student : studentList){
-            view.setData(student.toString()+student.getStudentCourse().size());
-            view.diplayData();
-        }
-    }
-
-    //display student
-    public void displayStudent(String code) {
-        view.displayStudentInformation();
-        view.setData(findByID(code).toString());
+        service.setData(studentList);
+        view.setData(service.report());
         view.diplayData();
+
     }
 
-    //diplay menu
-    public void displayMenu() {
-        view.diplayMenu();
-    }
-
-    public void displaySemester() {
-        view.displaySemester();
-    }
-
-    public void displayCourse() {
-        view.displayCourse();
-    }
 }
