@@ -99,17 +99,15 @@ public class Task {
     public void setReviewer(String reviewer) {
         this.reviewer = reviewer;
     }
-    public double taskTime(){
-        return end-start;
+
+    public double taskTime() {
+        return end - start;
     }
 
     @Override
     public String toString() {
-        SimpleDateFormat fmt = new  SimpleDateFormat("dd-MM-yyyy");
-        return String.format("%-3s %-15s %-10s %-15s %-5.1f %-15s %-15s",id,name,type,fmt.format(date),taskTime(),asignee,reviewer);
+        SimpleDateFormat fmt = new SimpleDateFormat("dd-MM-yyyy");
+        return String.format("%-3s %-15s %-10s %-15s %-5.1f %-15s %-15s", id, name, type, fmt.format(date), taskTime(), asignee, reviewer);
     }
-    
-    
-    
 
 }
