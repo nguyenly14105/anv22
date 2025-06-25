@@ -10,6 +10,8 @@ package constans;
  */
 public class Messages {
 
+    private Messages() {
+    }
     //thong bao doc ghi file thanh cong
     public static final String READ_FILE_SUCCESSFULL = "Read file successfull !!!";
     public static final String WRITE_FILE_SUCCESSFULL = "Write file successfull !!!";
