@@ -18,4 +18,6 @@ public class Messages {
     //thong bao loi doc ghi file
     public static final String READ_FILE_FAIL = "Read file fail !!!";
     public static final String WRITE_FILE_FAIL = "Write file fail !!!";
+    public static final String FILE_LIMIT_ERROR = "File size is over safe size !!!";
+    public static final String OUT_OF_MEMORY = "Out of memory !!!";
 }

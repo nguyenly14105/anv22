@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import ultis.*;
 
 
@@ -101,6 +99,9 @@ public class Main {
                 case 4: 
                     try {
                     List<String> expenses = ReadFile.readFile("Expenses.txt");
+                    if (!expenses.isEmpty()) {
+                        System.out.println(Messages.READ_FILE_SUCCESSFULL);
+                    }
                     for (String line : expenses) {
                         String words[] = line.split(";");
                         try {

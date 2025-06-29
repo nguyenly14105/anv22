@@ -28,8 +28,8 @@ public class Main {
             if (!input.isEmpty()) {
                 System.out.println(Messages.READ_FILE_SUCCESSFULL);
             }
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException | OutOfMemoryError e) {
+            System.err.println(e.getMessage());
         }
         //set input vao controller
         controller.setText(input);
